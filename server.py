@@ -4,14 +4,12 @@ import threading
 import time
 from queue import Queue
 
+# Setting up multi Threading (incomplete)
 NUMBER_OF_THREADS = 2
 JOB_NUMBER = [1, 2]
 queue = Queue()
 all_connections = []
 all_addresses = []
-
-
-
 
 # Create socket (allows two computer to connect)
 def socket_create():
