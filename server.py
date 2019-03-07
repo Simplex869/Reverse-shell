@@ -91,7 +91,6 @@ def get_target(cmd):
 		print("Not a valid selection")
 		return None
 
-
 # Connect with remote target client
 def send_target_commands(conn):
 	while True:
@@ -106,3 +105,33 @@ def send_target_commands(conn):
 		except:
 			print("Connection was lost")
 			break
+
+# Create worker threads
+def create_workers():
+	for _ in range(NUMBER_OF_THREADS):
+		t = threading.Thread(target=work)
+		t.daemon = True
+		t.start()
+
+# Do the next job in the queue (one handles connections, the other sends commands)
+def work():
+	while True:
+		x = queue.get()
+		if x == 1:
+			socket_create()
+			socket_bind()
+			accept_connections()
+		if x == 2:
+			start_turtle()
+		queue.task_done()
+
+
+
+# Each list item is a new job
+def create_jobs():
+	for x in JOB_NUMBER:
+		queue.put(x)
+	queue.join()
+
+create_workers()
+create_jobs()
