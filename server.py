@@ -77,3 +77,16 @@ def list_connections():
 			continue
 		results += str(i) + '	' + str(all_addresses[i][0]) + '	' + str(all_addresses[i][1]) + '\n'
 	print('------- Clients -------' + '\n' + results)
+
+# Select a target client
+def get_target(cmd):
+	try:
+		target = cmd.replace('select ', '')
+		target = int(target)
+		conn = all_connections[target]
+		print('You are now connected to ' + str(all_addresses[target][0]))
+		print(str(all_addresses[target][0]) + '>', end="")
+		return conn
+	except:
+		print("Not a valid selection")
+		return None
