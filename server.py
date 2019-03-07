@@ -63,7 +63,7 @@ def start_turtle():
 				send_target_commands(conn)
 		else:
 			print("Command not recognized")
-
+  
 # Displays all current connections
 def list_connections():
 	results = ''
