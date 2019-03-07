@@ -1,3 +1,4 @@
+#Run this file on the target computer/server
 import os
 import socket
 import subprocess
