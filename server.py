@@ -41,7 +41,7 @@ def accept_connections():
 		c.clolse()
 	del all_connections [:]
 	del all_addresses [:]
-	while 1:
+	while True:
 		try:
 			conn, address = s.accept()
 			conn.setblocking(1)
@@ -50,3 +50,17 @@ def accept_connections():
 			print("\nConnection has beemn established: " + address[0])
 		except:
 			print("Error accepting connections")
+
+# Interactive prompt for sending commands remotely
+def start_turtle():
+	while True:
+		cmd = input('turtle>')
+		if == 'list':
+			list_connections()
+		elif 'select' in cmd:
+			conn = get_target(cmd)
+			if conn is not None:
+				send_target_commands(conn)
+		else:
+			print("Command not recognized")
+		
